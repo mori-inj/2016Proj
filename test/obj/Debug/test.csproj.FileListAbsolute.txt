@@ -4,3 +4,6 @@ C:\C#\test\test\bin\Debug\test.pdb
 C:\C#\test\test\obj\Debug\test.csprojResolveAssemblyReference.cache
 C:\C#\test\test\obj\Debug\test.exe
 C:\C#\test\test\obj\Debug\test.pdb
+C:\C#\test\test\bin\Debug\DocumentFormat.OpenXml.dll
+C:\C#\test\test\bin\Debug\WindowsBase.dll
+C:\C#\test\test\bin\Debug\DocumentFormat.OpenXml.xml
