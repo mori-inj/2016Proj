@@ -1,6 +1,7 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Validation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,10 +21,30 @@ namespace test
             //Console.WriteLine(PrintXML(xml));
 
             string fileName = @"C:\Users\Doos\Desktop\aaaa.xlsx";
-            ParseXlsx(fileName);
+            ValidateXlsx(fileName);
+            //ParseXlsx(fileName);
             
         }
 
+        public static void ValidateXlsx(string fileName)
+        {
+            using (SpreadsheetDocument wordDoc = SpreadsheetDocument.Open(fileName, false))
+            {
+                OpenXmlValidator validator = new OpenXmlValidator();
+                var errors = validator.Validate(wordDoc);
+                if (errors.Count() == 0)
+                    Console.WriteLine("Document is valid");
+                else
+                    Console.WriteLine("Document is not valid");
+                Console.WriteLine();
+                foreach (var error in errors)
+                {
+                    Console.WriteLine("Error description: {0}", error.Description);
+                    Console.WriteLine("Content type of part with error: {0}",error.Part.ContentType);
+                    Console.WriteLine("Location of error: {0}", error.Path.XPath);
+                }
+            }
+        }
 
         public static void ParseXlsx(string fileName)
         {
